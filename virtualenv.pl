@@ -38,7 +38,8 @@ chmod 0755, "$venv/bin/perl";
 my $cpanm = dirname($perl) . "/cpanm";
 spit "$venv/bin/cpanm", <<EOS;
 #!/bin/sh
-exec $cpanm --local-lib="$venv" "\$@"
+$cpanm --local-lib="$venv" "\$@"
+find $venv/bin/* | xargs -I {} sed -i '1 s|^#!.*perl.*|#!$venv/bin/perl|' {}
 EOS
 chmod 0755, "$venv/bin/cpanm";
 
