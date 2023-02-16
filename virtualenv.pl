@@ -12,12 +12,12 @@ use Cwd qw(abs_path);
 my $perl = $Config{perlpath};
 my $venv = shift || 'venv';
 
-if (!file_name_is_absolute($venv)) {
+if ( !file_name_is_absolute($venv) ) {
     $venv = abs_path . "/$venv";
 }
 
-if (! -d "$venv/bin") {
-    make_path "$venv/bin" or die "Unable to create directory '$venv/bin'.\n"
+if ( !-d "$venv/bin" ) {
+    make_path "$venv/bin" or die "Unable to create directory '$venv/bin'.\n";
 }
 
 print "perl: $perl\n";
